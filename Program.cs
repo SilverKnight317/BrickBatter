@@ -10,6 +10,30 @@ namespace cse210_batter_csharp
     {
         static void Main(string[] args)
         {
+            /*
+            List<Student> people = new List<Student>();
+            Student p1 = new Student();
+            p1.Set_First_Name("Jeffy");
+            p1.Set_Last_Name("Burrito");
+            p1.Set_GPA(2);
+            people.Add(p1);
+            Student p2 = new Student();
+            p2.Set_First_Name("Beffy");
+            p2.Set_Last_Name("Dorito");
+            p2.Set_GPA(3);
+            people.Add(p2);
+            Student p3 = new Student();
+            p3.Set_First_Name("Pepsi");
+            p3.Set_Last_Name("Longito");
+            p3.Set_GPA(4);
+            people.Add(p3);
+            foreach(Student person in people)
+            {
+                Console.WriteLine(person.Get_Full_Info());
+            }
+            */
+
+            
             // Create the cast
             Dictionary<string, List<Actor>> cast = new Dictionary<string, List<Actor>>();
 
@@ -17,6 +41,23 @@ namespace cse210_batter_csharp
             cast["bricks"] = new List<Actor>();
 
             // TODO: Add your bricks here
+
+            int brickSpacing = Constants.BRICK_WIDTH + Constants.BRICK_SPACE;
+            int verticalbrickSpacing = Constants.BRICK_HEIGHT + Constants.BRICK_SPACE;
+            for(int x = 0; x < Constants.MAX_X; x += brickSpacing)
+            {
+                for(int y = 10; y < 200; y += verticalbrickSpacing)
+                {
+                    Brick b = new Brick();
+                    b.SetPosition(new Point(x, y));
+                    cast["bricks"].Add(b);
+                }
+            }
+            
+            
+
+
+
 
             // The Ball (or balls if desired)
             cast["balls"] = new List<Actor>();
@@ -54,6 +95,7 @@ namespace cse210_batter_csharp
             theDirector.Direct();
 
             audioService.StopAudio();
+            
         }
     }
 }
