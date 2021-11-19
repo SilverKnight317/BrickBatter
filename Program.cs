@@ -63,11 +63,22 @@ namespace cse210_batter_csharp
             cast["balls"] = new List<Actor>();
 
             // TODO: Add your ball here
+            Ball bal = new Ball();
+            bal.SetPosition(new Point(Constants.BALL_X, Constants.BALL_Y));
+            bal.SetVelocity(new Point(Constants.BALL_DX, Constants.BALL_DY));
+            cast["balls"].Add(bal);Ball ballnew = new Ball();
+            ballnew.SetPosition(new Point(-Constants.BALL_X, Constants.BALL_Y));
+            ballnew.SetVelocity(new Point(Constants.BALL_DX, Constants.BALL_DY));
+            cast["balls"].Add(ballnew);
+
+
 
             // The paddle
             cast["paddle"] = new List<Actor>();
 
             // TODO: Add your paddle here
+            Paddle paddle = new Paddle();
+            cast["paddle"].Add(paddle);
 
             // Create the script
             Dictionary<string, List<Action>> script = new Dictionary<string, List<Action>>();
@@ -76,6 +87,10 @@ namespace cse210_batter_csharp
             InputService inputService = new InputService();
             PhysicsService physicsService = new PhysicsService();
             AudioService audioService = new AudioService();
+            MoveActorsAction moveActors = new MoveActorsAction();
+            HandleOffScreenActions handleOffScreenActions = new HandleOffScreenActions(audioService);
+            ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
+            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService, audioService);
 
             script["output"] = new List<Action>();
             script["input"] = new List<Action>();
@@ -85,6 +100,12 @@ namespace cse210_batter_csharp
             script["output"].Add(drawActorsAction);
 
             // TODO: Add additional actions here to handle the input, move the actors, handle collisions, etc.
+            script["update"].Add(moveActors);
+            script["update"].Add(handleOffScreenActions);
+            script["update"].Add(controlActorsAction);
+            script["update"].Add(handleCollisionsAction);
+            
+
 
             // Start up the game
             outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Batter", Constants.FRAME_RATE);

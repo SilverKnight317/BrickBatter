@@ -1,5 +1,4 @@
-using cse210_batter_csharp.Casting;
-namespace cse210_batter_csharp
+namespace cse210_batter_csharp.Casting
 {
     class Brick : Actor
     {

@@ -1,5 +1,4 @@
 using System;
-
 namespace cse210_batter_csharp.Casting
 {
     /// <summary>
@@ -151,6 +150,20 @@ namespace cse210_batter_csharp.Casting
             }
 
             _position = new Point(newX, newY);
+        }
+        public void ChangeVelocityX()
+        {  
+           Point oldVelocity = GetVelocity();
+            int x = oldVelocity.GetX();
+            int y = oldVelocity.GetY();
+            SetVelocity(new Point(-x, y));
+        }
+        public void ChangeVelocityY()
+        {  
+           Point oldVelocity = GetVelocity();
+            int x = oldVelocity.GetX();
+            int y = oldVelocity.GetY();
+            SetVelocity(new Point(x, -y));
         }
 
         public override string ToString()
