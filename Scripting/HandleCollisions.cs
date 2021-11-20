@@ -12,13 +12,13 @@ namespace cse210_batter_csharp.Scripting
     {
         PhysicsService _physicsService = new PhysicsService();
         AudioService _audioService;
-        private int countOfTen = 10;
-        private int brickRemovedCount;
+        ScoreBoard _scoreBoard;
 
-        public HandleCollisionsAction(PhysicsService physicsService, AudioService audioService)
+        public HandleCollisionsAction(PhysicsService physicsService, AudioService audioService, ScoreBoard scoreBoard)
         {
             _physicsService = physicsService;
             _audioService = audioService;
+            _scoreBoard = scoreBoard;
         }
 
         public override void Execute(Dictionary<string, List<Actor>> cast)
@@ -46,20 +46,13 @@ namespace cse210_batter_csharp.Scripting
                         ball.ChangeVelocityY();
                         _audioService.PlaySound(Constants.SOUND_BOUNCE);
                         removeBrick.Add(brick);
-                        brickRemovedCount += 1; /*
-                        if(brickRemovedCount > countOfTen)
-                        {
-                            Ball ballnew = new Ball();
-                            ballnew.SetPosition(new Point(Constants.BALL_X, Constants.BALL_Y));
-                            ballnew.SetVelocity(new Point(Constants.BALL_DX, Constants.BALL_DY));
-                            cast["balls"].Add(ballnew);
-                            countOfTen += 10;
-                        } */
+                        // _scoreBoard.AddScoreBoardPoint();
                     }
                 }
                 foreach(Actor brick in removeBrick)
                 {
                     cast["bricks"].Remove(brick);
+                    // _scoreBoard.AddScoreBoardPoint();
                 }
             }
         }

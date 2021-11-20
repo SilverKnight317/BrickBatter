@@ -66,12 +66,17 @@ namespace cse210_batter_csharp
             Ball bal = new Ball();
             bal.SetPosition(new Point(Constants.BALL_X, Constants.BALL_Y));
             bal.SetVelocity(new Point(Constants.BALL_DX, Constants.BALL_DY));
-            cast["balls"].Add(bal);Ball ballnew = new Ball();
+            cast["balls"].Add(bal);
+            Ball ballnew = new Ball();
             ballnew.SetPosition(new Point(-Constants.BALL_X, Constants.BALL_Y));
             ballnew.SetVelocity(new Point(Constants.BALL_DX, Constants.BALL_DY));
             cast["balls"].Add(ballnew);
 
-
+            // The ScoreBoard
+            ScoreBoard scoreBoard = new ScoreBoard();
+            scoreBoard.SetPosition(new Point( 5 , Constants.MAX_Y - 40));
+            cast["scoreBoard"] = new List<Actor>();
+            cast["scoreBoard"].Add(scoreBoard);
 
             // The paddle
             cast["paddle"] = new List<Actor>();
@@ -90,7 +95,7 @@ namespace cse210_batter_csharp
             MoveActorsAction moveActors = new MoveActorsAction();
             HandleOffScreenActions handleOffScreenActions = new HandleOffScreenActions(audioService);
             ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
-            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService, audioService);
+            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService, audioService, scoreBoard);
 
             script["output"] = new List<Action>();
             script["input"] = new List<Action>();
