@@ -103,12 +103,14 @@ namespace cse210_batter_csharp
 
             DrawActorsAction drawActorsAction = new DrawActorsAction(outputService);
             script["output"].Add(drawActorsAction);
+            UpdateScore updateScore = new UpdateScore(scoreBoard);
 
             // TODO: Add additional actions here to handle the input, move the actors, handle collisions, etc.
             script["update"].Add(moveActors);
             script["update"].Add(handleOffScreenActions);
             script["update"].Add(controlActorsAction);
             script["update"].Add(handleCollisionsAction);
+            script["update"].Add(updateScore);
             
 
 
